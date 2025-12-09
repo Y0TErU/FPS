@@ -7,12 +7,13 @@ class ObjectBase
 {
 public:
 	virtual ~ObjectBase() = default;
-	ObjectBase()
+	ObjectBase(std::string tag_)
 	{
+		tag = tag_;
+		isActive = true;
 	}
 
 public:
-	virtual void Initialize() = 0;
 	virtual void Update() = 0;
 	virtual void Draw() = 0;
 
@@ -33,6 +34,6 @@ protected:
 	VECTOR rotation{};
 	std::string tag{};
 
-	bool isActive{};
+	bool isActive{ false };
 
 };
