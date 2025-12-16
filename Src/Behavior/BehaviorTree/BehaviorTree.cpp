@@ -41,14 +41,6 @@ std::shared_ptr<BehaviorNode> BehaviorTree::Inference(BlackBoard& black_board_)
 	return root->Inference(black_board_);
 }
 
-// 推論
-std::shared_ptr<BehaviorNode> BehaviorTree::Inference(BlackBoard& black_board_)
-{
-	// データをしセットして開始
-	black_board_.behaviorContextCmd.Init();
-	return root->Inference(black_board_);
-}
-
 // シーケンスノードからの推論開始
 std::shared_ptr<BehaviorNode> BehaviorTree::SequenceBack(std::shared_ptr<BehaviorNode> sequence_node_, BlackBoard& black_board_)
 {

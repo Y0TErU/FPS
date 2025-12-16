@@ -10,6 +10,11 @@ struct BlackBoard
 	// Behavior‘¤
 	BehaviorContext behaviorContextCmd{};	// Behavioró‹µ
 
+	// Enemy‚Ìƒpƒ‰ƒ[ƒ^
+	float current_hp{ 0.0f };		// HP
+	float attack{ 0.0f };			// UŒ‚—Í
+	float defence{ 0.0f };			// –hŒä—Í
 
+	float hp_percent{ 0.0f };		// HP“
 
 };
