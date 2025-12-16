@@ -3,6 +3,7 @@
 #include <Dxlib.h>
 #include <string>
 
+// Object基底クラス
 class ObjectBase
 {
 public:
@@ -14,8 +15,8 @@ public:
 	}
 
 public:
-	virtual void Update() = 0;
-	virtual void Draw() = 0;
+	virtual void Update() = 0;	// 更新
+	virtual void Draw() = 0;	// 描画
 
 public:
 	bool GetIsActive()
@@ -28,12 +29,12 @@ public:
 	}
 
 protected:
-	VECTOR positioin{};
-	VECTOR direction{};
-	VECTOR scale{};
-	VECTOR rotation{};
-	std::string tag{};
+	VECTOR positioin{};			// 座標
+	VECTOR direction{};			// 向き
+	VECTOR scale{};				// 拡大率
+	VECTOR rotation{};			// 三軸角度
+	std::string tag{};			// 自身のタグ
 
-	bool isActive{ false };
+	bool isActive{ false };		// 生存フラグ
 
 };

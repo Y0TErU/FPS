@@ -19,7 +19,7 @@ public:
 	void Draw() override;
 
 private:
-	int speed{ 1.0f };	// ’e‘¬
+	float speed{ 1.0f };	// ’e‘¬
 	bool isHit{ false };	// ‰½‚©‚É“–‚½‚Á‚½‚©‚Ç‚¤‚©
 	
 
