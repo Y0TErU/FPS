@@ -4,8 +4,8 @@
 #include <string>
 #include <memory>
 #include "../BehaviorConstants/BehaviorConstants.h"
-#include "../../Base/ActionBase/Actionbase.h"
-#include "../../Base/JudgeBase/JudgeBase.h"
+#include "../../AI/Action/ActionBase/ActionBase.h"
+#include "../../AI/Judge/JudgeBase/JudgeBase.h"
 
 class BehaviorNode : public std::enable_shared_from_this<BehaviorNode>
 {

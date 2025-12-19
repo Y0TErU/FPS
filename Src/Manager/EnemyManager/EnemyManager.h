@@ -3,7 +3,7 @@
 #include <memory>
 #include <vector>
 
-#include "../../Base/EnemyBase/EnemyBase.h"
+#include "../../Object/Enemy/EnemyBase/EnemyBase.h"
 
 using namespace std;
 

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../../Base/SceneBase/SceneBase.h"
+#include "../SceneBase/SceneBase.h"
 
 class TitleScene : public SceneBase
 {

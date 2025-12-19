@@ -1,18 +1,18 @@
 #pragma once
 
-#include "../ObjectBase/ObjectBase.h"
-#include "../../Behavior/BehaviorTree/BehaviorTree.h"
-#include "../../BlackBoard/BlackBoard.h"
-#include "../../Behavior/BehaviorNode/BehaviorNode.h"
+#include "../../ObjectBase/ObjectBase.h"
+#include "../../../Behavior/BehaviorTree/BehaviorTree.h"
+#include "../../../BlackBoard/BlackBoard.h"
+#include "../../../Behavior/BehaviorNode/BehaviorNode.h"
+#include "../../../Transform/Tramsform.h"
 
 class EnemyBase : public ObjectBase
 {
 public:
 	~EnemyBase() = default;
-	EnemyBase(BehaviorTree* behavior_tree_, float max_hp_, float move_speed_, float attack_, float defence_, std::string name_,
-		std::string tag_) :
-		behaviorTree{ behavior_tree_ }, max_hp{ max_hp_ }, move_speed{ move_speed_ }, attack{ attack }, defence{ defence_ }, name{ name_ }, 
-		ObjectBase(tag_)
+	EnemyBase(BehaviorTree* behavior_tree_, const std::string name_, float max_hp_, float move_speed_, float attack_, float defence_) :
+		behaviorTree{ behavior_tree_ }, name{ name_ }, max_hp{ max_hp_ }, move_speed{ move_speed_ }, attack{ attack }, defence{ defence_ },
+		ObjectBase("Enemy")
 	{
 		current_hp = max_hp;
 		OnePercentTotalHp();
@@ -22,18 +22,27 @@ public:
 	// ƒ_ƒ[ƒW‚ğó‚¯‚éˆ—
 	void ReceiveDamage(float damage_);
 
+public:
+	std::string GetName()
+	{
+		return name;
+	}
+
+	void SetTransform(const Transform& transform_)
+	{
+		transform = transform_;
+	}
+
 private:
-	void ShootBullet();		// ’e‚ğŒ‚‚Â
+	void ShootBullet();			// ’e‚ğŒ‚‚Â
 	void OnePercentTotalHp()	// Å‘åHP‚Ì1%‚ğŒvZ
 	{
 		one_percent_of_total_hp = 100.0f / max_hp;
 	}
 
-private:
 	// BlackBoard“üo—Í
 	void InputBlackBoard();
 	void OutputBlackBoard();
-	
 
 protected:
 	float max_hp{};				// Å‘åHp
@@ -41,8 +50,9 @@ protected:
 	float move_speed{};			// ˆÚ“®‘¬“x
 	float attack{};				// UŒ‚—Í
 	float defence{};			// –hŒä—Í
-
 	float one_percent_of_total_hp{};	// Å‘åHP‚Ì1%‚Ì’l
+
+	Transform transform;		// 3DÀ•WŒnî•ñ
 
 protected:
 	std::string name{ "" };									// ©g‚Ì–¼‘O(“G‚Ìí—Ş)

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../../../Base/ObjectBase/ObjectBase.h"
+#include "../../ObjectBase/ObjectBase.h"
 
 class Gun : public ObjectBase
 {

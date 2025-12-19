@@ -45,6 +45,7 @@ std::shared_ptr<BehaviorNode> BehaviorNode::SearchNode(unsigned int search_id_)
 			}
 		}
 	}
+	return nullptr;
 }
 
 // –¼‘O•\Ž¦
