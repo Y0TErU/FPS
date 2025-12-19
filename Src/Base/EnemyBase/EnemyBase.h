@@ -9,9 +9,9 @@ class EnemyBase : public ObjectBase
 {
 public:
 	~EnemyBase() = default;
-	EnemyBase(BehaviorTree* behavior_tree_, float max_hp_, float move_speed_, float attack_, float defence_,
+	EnemyBase(BehaviorTree* behavior_tree_, float max_hp_, float move_speed_, float attack_, float defence_, std::string name_,
 		std::string tag_) :
-		behaviorTree{ behavior_tree_ }, max_hp{ max_hp_ }, move_speed{ move_speed_ }, attack{ attack }, defence{ defence_ },
+		behaviorTree{ behavior_tree_ }, max_hp{ max_hp_ }, move_speed{ move_speed_ }, attack{ attack }, defence{ defence_ }, name{ name_ }, 
 		ObjectBase(tag_)
 	{
 		current_hp = max_hp;
@@ -45,6 +45,7 @@ protected:
 	float one_percent_of_total_hp{};	// 最大HPの1%の値
 
 protected:
+	std::string name{ "" };									// 自身の名前(敵の種類)
 	BehaviorTree* behaviorTree{ nullptr };					// ビヘイビアツリー
 	std::shared_ptr<BehaviorNode> currentNode{ nullptr };	// 実行中ノード
 	BlackBoard blackBoard{};								// ビヘイビアデータ

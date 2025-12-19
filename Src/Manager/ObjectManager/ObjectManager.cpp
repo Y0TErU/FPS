@@ -46,7 +46,6 @@ void ObjectManager::Delete()
 			++itr;
 		}
 	}
-
 }
 
 void ObjectManager::AllDelete()

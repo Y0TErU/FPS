@@ -20,16 +20,21 @@ void TitleScene::EntryLoadFiles()
 
 void TitleScene::Init()
 {
+
+
 	currentStep = Step::Execute;
 }
 
 void TitleScene::Execute()
 {
+
+
 	currentStep = Step::Finish;
 }
 
 SceneBase::Type TitleScene::Finish()
 {
+
 
 	return Type::Game;
 }

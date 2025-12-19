@@ -2,15 +2,15 @@
 
 #include "../../Base/SceneBase/SceneBase.h"
 
-class TitleScene : public SceneBase
+class GameScene : public SceneBase
 {
 public:
-	TitleScene(int handle_) :
+	GameScene(int handle_) :
 		SceneBase(handle_)
 	{
 	}
 
-	~TitleScene() override
+	~GameScene() override
 	{
 	}
 
