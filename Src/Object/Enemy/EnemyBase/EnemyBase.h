@@ -5,23 +5,21 @@
 #include "../../../BlackBoard/BlackBoard.h"
 #include "../../../Behavior/BehaviorNode/BehaviorNode.h"
 #include "../../../Transform/Tramsform.h"
+#include "../Status/Status.h"
 
 class EnemyBase : public ObjectBase
 {
 public:
 	~EnemyBase() = default;
 	EnemyBase(BehaviorTree* behavior_tree_, const std::string name_, float max_hp_, float move_speed_, float attack_, float defence_) :
-		behaviorTree{ behavior_tree_ }, name{ name_ }, max_hp{ max_hp_ }, move_speed{ move_speed_ }, attack{ attack }, defence{ defence_ },
+		behaviorTree{ behavior_tree_ }, name{ name_ },
 		ObjectBase("Enemy")
 	{
-		current_hp = max_hp;
-		OnePercentTotalHp();
+		status.Initialize(max_hp_, move_speed_, attack_, defence_);
 	}
 
 public:
-	// ダメージを受ける処理
-	void ReceiveDamage(float damage_);
-
+	
 public:
 	std::string GetName()
 	{
@@ -33,25 +31,31 @@ public:
 		transform = transform_;
 	}
 
-private:
-	void ShootBullet();			// 弾を撃つ
-	void OnePercentTotalHp()	// 最大HPの1%を計算
+	// トランスフォームのゲッター
+	Transform GetTransform() const
 	{
-		one_percent_of_total_hp = 100.0f / max_hp;
+		return transform;
 	}
 
+	// ステータスのゲッター
+	const Status& GetStatus() const
+	{
+		return status;
+	}
+
+	// ステータスのアクセサー
+	Status& AccessStatus()
+	{
+		return status;
+	}
+
+private:
 	// BlackBoard入出力
 	void InputBlackBoard();
 	void OutputBlackBoard();
 
-protected:
-	float max_hp{};				// 最大Hp
-	float current_hp{};			// 現在のHP
-	float move_speed{};			// 移動速度
-	float attack{};				// 攻撃力
-	float defence{};			// 防御力
-	float one_percent_of_total_hp{};	// 最大HPの1%の値
-
+private:
+	Status status;				// ステータス情報
 	Transform transform;		// 3D座標系情報
 
 protected:

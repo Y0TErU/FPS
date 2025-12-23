@@ -18,6 +18,6 @@ struct BlackBoard
 	float attack{ 0.0f };			// UŒ‚—Í
 	float defence{ 0.0f };			// –hŒä—Í
 
-	float hp_percent{ 0.0f };		// HP“
+	float hp_rate{ 0.0f };		// HPŠ„‡
 
 };

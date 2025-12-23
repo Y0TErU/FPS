@@ -17,7 +17,6 @@ public:
 		EnemyBase(ai_tree_, "Drone", 100.0f, 20.0f, 20.0f, 5.0f)
 	{
 		SetIsActive(true);
-		
 	}
 
 	~Drone()

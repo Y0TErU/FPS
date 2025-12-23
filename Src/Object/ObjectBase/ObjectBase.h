@@ -11,7 +11,6 @@ public:
 	ObjectBase(const std::string tag_)
 	{
 		tag = tag_;
-		isActive = true;
 	}
 
 public:
