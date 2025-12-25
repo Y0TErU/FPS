@@ -5,8 +5,10 @@
 
 #include "../../Object/ObjectBase/ObjectBase.h"
 
-using namespace std;
-
+/*
+	ここではObjectが行う共通処理のみを行うこと
+	Update(),Draw(),Delete()のみ
+*/
 class ObjectManager
 {
 public:
@@ -25,7 +27,7 @@ public:
 	ObjectManager& operator = (const ObjectManager&) = delete;
 
 public:
-	void Entry(shared_ptr<ObjectBase> object_);		// 登録予約
+	void Entry(std::shared_ptr<ObjectBase> object_);		// 登録予約
 	void Register();	// 登録待ちの一斉登録
 
 	void Update();		// 更新
@@ -34,9 +36,9 @@ public:
 	void Delete();		// 削除
 	void AllDelete();	// 全削除
 
-	vector<shared_ptr<ObjectBase>> GetInstance(string tag_);	// タグのオブジェクトのインスタンスを取得
+	std::vector<std::shared_ptr<ObjectBase>> GetInstance(std::string tag_);	// タグのオブジェクトのインスタンスを取得
 
 private:
-	vector<shared_ptr<ObjectBase>> entry_objects;	// 登録待ちのオブジェクト
-	vector<shared_ptr<ObjectBase>> objects;			// 登録済みのオブジェクト 
+	std::vector<std::shared_ptr<ObjectBase>> entry_objects;	// 登録待ちのオブジェクト
+	std::vector<std::shared_ptr<ObjectBase>> objects;			// 登録済みのオブジェクト 
 };

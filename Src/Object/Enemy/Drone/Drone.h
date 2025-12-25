@@ -13,8 +13,8 @@ public:
 			attack:20
 			defence:5
 	*/
-	Drone(BehaviorTree* ai_tree_, Transform transform) :
-		EnemyBase(ai_tree_, "Drone", 100.0f, 20.0f, 20.0f, 5.0f)
+	Drone(BehaviorTree* ai_tree_, Transform transform_):
+		EnemyBase(ai_tree_, transform_,"Drone", 100.0f, 20.0f, 20.0f, 5.0f)
 	{
 		SetIsActive(true);
 	}

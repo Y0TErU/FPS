@@ -1,6 +1,6 @@
 #include "ObjectManager.h"
 
-void ObjectManager::Entry(shared_ptr<ObjectBase> object_)
+void ObjectManager::Entry(std::shared_ptr<ObjectBase> object_)
 {
 	entry_objects.push_back(object_);
 }
@@ -53,10 +53,10 @@ void ObjectManager::AllDelete()
 	objects.clear();
 }
 
-vector<shared_ptr<ObjectBase>> ObjectManager::GetInstance(string tag_)
+std::vector<std::shared_ptr<ObjectBase>> ObjectManager::GetInstance(std::string tag_)
 {
 	// –ß‚è’l—pvector
-	vector<shared_ptr<ObjectBase>> subject_objects;
+	std::vector<std::shared_ptr<ObjectBase>> subject_objects;
 	for (auto& object : objects)
 	{
 		if (object->GetTag() == tag_)

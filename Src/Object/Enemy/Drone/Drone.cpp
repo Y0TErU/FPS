@@ -2,6 +2,9 @@
 
 void Drone::Update()
 {
+	EnemyBase::Update();
+
+
 
 }
 

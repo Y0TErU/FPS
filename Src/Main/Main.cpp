@@ -1,5 +1,8 @@
 #include <Dxlib.h>
 
+#include "../Behavior/BehaviorTree/BehaviorTree.h"
+#include "../Object/Enemy/Drone/Drone.h"
+
 // プログラムは WinMain から始まります
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 {
@@ -25,7 +28,6 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 		1.0f,		// 描画範囲の最短距離(最小は1.0fでそれ未満は描画が壊れる可能性あり)
 		1000.0f		// 描画範囲の最長距離
 	);
-
 
 	while (ProcessMessage() == 0 && CheckHitKey(KEY_INPUT_ESCAPE) == 0)
 	{

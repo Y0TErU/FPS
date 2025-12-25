@@ -14,24 +14,6 @@ void EnemyManager::Register()
 	entry_enemies.clear();
 }
 
-void EnemyManager::Update()
-{
-	for (auto& enemy : enemies)
-	{
-		enemy->Update();
-	}
-}
-
-void EnemyManager::Draw()
-{
-	for (auto& enemy : enemies)
-	{
-		if (enemy->GetIsActive())
-		{
-			enemy->Draw();
-		}
-	}
-}
 
 void EnemyManager::Delete()
 {

@@ -1,5 +1,6 @@
 #include "EnemyBase.h"
 
+
 void EnemyBase::InputBlackBoard()
 {
 	blackBoard.current_hp = status.GetCurrentHP();

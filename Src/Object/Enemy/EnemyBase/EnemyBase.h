@@ -11,17 +11,38 @@ class EnemyBase : public ObjectBase
 {
 public:
 	~EnemyBase() = default;
-	EnemyBase(BehaviorTree* behavior_tree_, const std::string name_, float max_hp_, float move_speed_, float attack_, float defence_) :
-		behaviorTree{ behavior_tree_ }, name{ name_ },
+	EnemyBase(BehaviorTree* behavior_tree_,Transform transform_, const std::string name_, float max_hp_, float move_speed_, float attack_, float defence_) :
+		aiTree{ behavior_tree_ }, name{ name_ },
 		ObjectBase("Enemy")
 	{
 		status.Initialize(max_hp_, move_speed_, attack_, defence_);
+		SetTransform(transform_);
 	}
 
 public:
+	/*
+		Enemy共通の更新処理
+		AIの更新
+	*/
+	virtual void Update()
+	{
+		InputBlackBoard();
+
+		if (currentNode == nullptr)
+		{
+			currentNode = aiTree->Inference(blackBoard);
+		}
+
+		if (currentNode != nullptr)
+		{
+			currentNode = aiTree->Update(currentNode, blackBoard);
+		}
+
+		OutputBlackBoard();
+	}
 	
 public:
-	std::string GetName()
+	std::string GetName() const
 	{
 		return name;
 	}
@@ -32,7 +53,13 @@ public:
 	}
 
 	// トランスフォームのゲッター
-	Transform GetTransform() const
+	const Transform& GetTransform() const
+	{
+		return transform;
+	}
+
+	// トランスフォームのアクセサー
+	Transform& AccessTransform()
 	{
 		return transform;
 	}
@@ -60,7 +87,7 @@ private:
 
 protected:
 	std::string name{ "" };									// 自身の名前(敵の種類)
-	BehaviorTree* behaviorTree{ nullptr };					// ビヘイビアツリー
+	BehaviorTree* aiTree{ nullptr };					// ビヘイビアツリー
 	std::shared_ptr<BehaviorNode> currentNode{ nullptr };	// 実行中ノード
 	BlackBoard blackBoard{};								// ビヘイビアデータ
 
