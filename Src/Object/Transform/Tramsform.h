@@ -10,6 +10,7 @@ public:
 	// ゲッター
 	const VECTOR& GetPosition() const { return position; }	// 座標情報
 	const VECTOR& GetRotation() const { return rotation; }	// 向き情報
+
 	// 正面ベクトルの作成
 	VECTOR GetForward() const
 	{
@@ -40,8 +41,12 @@ public:
 		SetRotation(rot);
 	}
 
-private:
-	// 向きの変更
+	// セッター
+	void SetPosition(const VECTOR& position_)
+	{
+		position = position_;
+	}
+
 	void SetRotation(const VECTOR& rotatioin_)
 	{
 		rotation = rotatioin_;

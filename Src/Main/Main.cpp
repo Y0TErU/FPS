@@ -1,22 +1,23 @@
 #include <Dxlib.h>
 
 #include "../Controller/FrameController/FrameController.h"
-#include "../System/Screen/Screen.h"
+#include "../Manager/ScreenManager/ScreenManager.h"
+#include "../Manager/SceneManager/SceneManager.h"
 
 // プログラムは WinMain から始まります
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 {
 	// Vsyncの停止
 	FrameController::StopVSync();
+	
 
-	Screen screen;
-
-	if (!screen.Initialize())
+	if (!ScreenManager::GetInstance()->Initialize())
 	{
 		return false;
 	}
 
 	FrameController frame_controller;
+	SceneManager scene_manager( SceneBase::Type::Game );
 
 	//// カメラの設定
 	//SetCameraPositionAndTargetAndUpVec(
@@ -35,16 +36,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 	while (ProcessMessage() == 0 && CheckHitKey(KEY_INPUT_ESCAPE) == 0)
 	{
-		ClearDrawScreen();
-
-		frame_controller.StartFrame();
-		
-
-		frame_controller.DebugDrawFPSCountUI();
-		frame_controller.EndFrame();
-
-		
-		ScreenFlip();
+		scene_manager.Main();
 	}
 
 	InitGraph();

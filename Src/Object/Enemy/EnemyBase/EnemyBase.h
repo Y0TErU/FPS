@@ -2,10 +2,10 @@
 
 #include "../../ObjectBase/ObjectBase.h"
 #include "../../../Behavior/BehaviorTree/BehaviorTree.h"
-#include "../../../BlackBoard/BlackBoard.h"
+#include "../../BlackBoard/BlackBoard.h"
 #include "../../../Behavior/BehaviorNode/BehaviorNode.h"
-#include "../../../Transform/Tramsform.h"
-#include "../Status/Status.h"
+#include "../../Transform/Tramsform.h"
+#include "../../Status/Status.h"
 
 class EnemyBase : public ObjectBase
 {
@@ -15,7 +15,6 @@ public:
 		aiTree{ behavior_tree_ }, name{ name_ },
 		ObjectBase("Enemy")
 	{
-		status.Initialize(max_hp_, move_speed_, attack_, defence_);
 		SetTransform(transform_);
 	}
 
@@ -40,6 +39,9 @@ public:
 
 		OutputBlackBoard();
 	}
+
+	// ダメージを受ける処理
+	void ReceiveDamage(float damage_);
 	
 public:
 	std::string GetName() const
@@ -87,7 +89,7 @@ private:
 
 protected:
 	std::string name{ "" };									// 自身の名前(敵の種類)
-	BehaviorTree* aiTree{ nullptr };					// ビヘイビアツリー
+	BehaviorTree* aiTree{ nullptr };						// ビヘイビアツリー
 	std::shared_ptr<BehaviorNode> currentNode{ nullptr };	// 実行中ノード
 	BlackBoard blackBoard{};								// ビヘイビアデータ
 

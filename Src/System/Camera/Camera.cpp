@@ -1,20 +1,28 @@
 #include "Camera.h"
 
 #include <cmath>
+#include <Dxlib.h>
 
 #include "../../Manager/InputManager/InputManager.h"
+#include "../../Manager/ScreenManager/ScreenManager.h"
 
 void Camera::SetTarget(const Transform* target_)
 {
-	if (target) return;
-
 	target = target_;
-
 }
 
 void Camera::SetMode(Camera::CameraMode mode_)
 {
 	current_mode = mode_;
+
+	if (current_mode == Camera::CameraMode::Fixed)
+	{
+		SetMouseDispFlag(TRUE);
+	}
+	else
+	{
+		SetMouseDispFlag(FALSE);
+	}
 }
 
 void Camera::Update()
@@ -40,13 +48,13 @@ void Camera::Apply()
 	switch (current_mode)
 	{
 	case CameraMode::Fixed:
-		UpdateFixedCamera();
+		ApplyFixedCamera();
 		break;
 	case CameraMode::FPS:
-		UpdateFPSCamera();
+		ApplyFPSCamera();
 		break;
 	case CameraMode::TPS:
-		UpdateTPSCamera();
+		ApplyTPSCamera();
 		break;
 	}
 }
@@ -54,19 +62,18 @@ void Camera::Apply()
 void Camera::UpdateFPSCamera()
 {
 	// 左右回転
-	yaw += InputManager::GetInstance()->GetMouseDeltaX();
+	yaw += InputManager::GetInstance()->GetMouseDeltaX() * sensitivity;
 	// 上下回転
-	pitch -= InputManager::GetInstance()->GetMouseDeltaY();
+	pitch -= InputManager::GetInstance()->GetMouseDeltaY() * sensitivity;
 
 	if (pitch > limit)
 	{
 		pitch = limit;
 	}
-	if (pitch < limit)
+	if (pitch < -limit)
 	{
 		pitch = -limit;
 	}
-
 }
 
 void Camera::UpdateTPSCamera()
@@ -105,7 +112,9 @@ void Camera::ApplyFPSCamera()
 	);
 
 	// マウス座標を中央に戻す
-	SetMousePoint(640, 360);
+	int center_x, center_y;
+	ScreenManager::GetInstance()->GetScreenCenter(&center_x, &center_y);
+	SetMousePoint(center_x, center_y);
 }
 
 void Camera::ApplyTPSCamera()

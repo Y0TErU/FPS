@@ -2,8 +2,23 @@
 
 #include <Dxlib.h>
 
-class Screen
+class ScreenManager
 {
+public:
+	static ScreenManager* GetInstance()
+	{
+		static ScreenManager instance;
+		return &instance;
+	}
+
+	ScreenManager() = default;
+	~ScreenManager()
+	{
+	}
+
+	ScreenManager(const ScreenManager&) = delete;
+	ScreenManager& operator = (const ScreenManager&) = delete;
+
 public:
 	// windowモード
 	enum WindowMode
@@ -15,6 +30,8 @@ public:
 	bool Initialize();		// 設定の初期化
 	void SetWindowMode(WindowMode mode_ );	// ウィンドウモードの変更
 
+	// スクリーンの中心の座標を取得
+	void GetScreenCenter(int* x_, int* y_);
 
 private:
 	// ウィンドウモードの時の画面サイズ

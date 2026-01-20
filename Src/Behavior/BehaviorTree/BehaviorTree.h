@@ -5,7 +5,7 @@
 
 #include "../BehaviorConstants/BehaviorConstants.h"
 #include  "../BehaviorNode/BehaviorNode.h"
-#include "../../BlackBoard/BlackBoard.h"
+#include "../../Object/BlackBoard/BlackBoard.h"
 #include "../../AI/Action/ActionBase/Actionbase.h"
 #include "../../AI/Judge/JudgeBase/JudgeBase.h"
 

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../../BlackBoard/BlackBoard.h"
+#include "../../../Object/BlackBoard/BlackBoard.h"
 
 // ”»’èˆ—Šî’êƒNƒ‰ƒX
 class JudgeBase

@@ -9,7 +9,6 @@ public:
 	SceneManager(SceneBase::Type first_type_) :
 		currentScene(nullptr)
 	{
-
 		currentScene = SceneFactory::CreateScene(first_type_, loadingHandle);
 	}
 

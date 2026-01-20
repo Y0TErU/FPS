@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../SceneBase/SceneBase.h"
+#include "../../System/Camera/Camera.h"
 
 class GameScene : public SceneBase
 {
@@ -22,5 +23,8 @@ private:
 	void Init() override;
 	void Execute() override;
 	Type Finish() override;
+
+private:
+	Camera camera;
 
 };

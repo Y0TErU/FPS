@@ -121,9 +121,10 @@ private:
 	// マウスカーソルの絶対座標
 	int mousePosX{ 0 };
 	int mousePosY{ 0 };
-	// マウス移動量
+	// 前フレームのマウスの位置
 	int prevMouseX{ 0 };
 	int prevMouseY{ 0 };
+	// マウス移動量
 	int mouseDeltaX{ 0 };
 	int mouseDeltaY{ 0 };
 };

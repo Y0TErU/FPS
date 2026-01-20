@@ -1,4 +1,5 @@
 #include "TitleScene.h"
+#include <Dxlib.h>
 
 SceneBase::Type TitleScene::GetType()
 {
@@ -8,9 +9,10 @@ SceneBase::Type TitleScene::GetType()
 void TitleScene::Draw()
 {
 	if (currentStep != Step::Execute) return;
+	ClearDrawScreen();
 
 	
-
+	ScreenFlip();
 }
 
 void TitleScene::EntryLoadFiles()
