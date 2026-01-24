@@ -11,7 +11,7 @@ VECTOR TransformManager::GetForward(std::shared_ptr<Transform> transform_)
 	forward.y = 0.0f;
 	forward.z = sinf(transform_->rotation.y);
 
-	VECTOR forward;
+	return forward;
 
 }
 
@@ -32,5 +32,20 @@ void TransformManager::RotationDirection(std::shared_ptr<Transform> transform_, 
 void TransformManager::RotationDirection(std::shared_ptr<Transform> transform_, const std::shared_ptr<Transform> target_)
 {
 	// rotationの更新(ターゲットで更新)
+	VECTOR direction = VSub(target_->position, transform_->position);
+
+	float length = sqrtf(direction.x * direction.x + direction.y * direction.y);
+	if (length == 0.0f)
+	{
+		// 同じ位置なら更新不要
+		return;
+	}
+
+	direction.x /= length;
+	direction.y /= length;
+	direction.z /= length;
+
+	transform_->rotation.y = atan2f(direction.z, direction.x);
+	transform_->rotation.x = -asinf(direction.y);
 
 }

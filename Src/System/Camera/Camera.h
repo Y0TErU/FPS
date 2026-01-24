@@ -2,7 +2,7 @@
 
 #include <Dxlib.h>
 
-#include "../../Object/Transform/Tramsform.h"
+#include "../../Object/Transform/Transform.h"
 
 class Camera
 {
